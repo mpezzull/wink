@@ -32,7 +32,7 @@ login here: https://account.mongodb.com/account/login to see the database used b
 >**email**=toro@mailinator.com
 >**pwd**=mattiawink
 
-You can request a token for authentication using the credentials [admin, admin]
+You can request a token for authentication using the credentials [admin, admin].
 I've created a swagger file from which you can try to call the APIs
 
 **Have fun!**
