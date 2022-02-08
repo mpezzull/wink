@@ -1,0 +1,17 @@
+Index: vendor/laravel/sanctum/src/PersonalAccessToken.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/laravel/sanctum/src/PersonalAccessToken.php b/vendor/laravel/sanctum/src/PersonalAccessToken.php
+--- a/vendor/laravel/sanctum/src/PersonalAccessToken.php	
++++ b/vendor/laravel/sanctum/src/PersonalAccessToken.php	(date 1644154804037)
+@@ -2,7 +2,7 @@
+ 
+ namespace Laravel\Sanctum;
+ 
+-use Illuminate\Database\Eloquent\Model;
++use Jenssegers\Mongodb\Eloquent\Model;
+ use Laravel\Sanctum\Contracts\HasAbilities;
+ 
+ class PersonalAccessToken extends Model implements HasAbilities

@@ -1,0 +1,191 @@
+openapi: 3.0.0
+info:
+  title: wink
+  version: 1.0.0
+servers:
+  - url: https://wink.test
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /api/v1/sanctum/token:
+    post:
+      tags:
+        - token
+      summary: token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: admin
+                password:
+                  type: string
+                  example: admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/posts/filter:
+    post:
+      tags:
+        - posts
+      summary: filter post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                pagination:
+                  current_page: 1
+                  first_page_url: https://wink.test/posts/filter?page=1
+                  from: 1
+                  last_page: 1
+                  last_page_url: https://wink.test/posts/filter?page=1
+                  links:
+                    - url: null
+                      label: '&laquo; Precedente'
+                      active: false
+                    - url: https://wink.test/posts/filter?page=1
+                      label: '1'
+                      active: true
+                    - url: null
+                      label: Successivo &raquo;
+                      active: false
+                  next_page_url: null
+                  path: https://wink.test/posts/filter
+                  per_page: 25
+                  prev_page_url: null
+                  to: 3
+                  total: 3
+                orderBy:
+                  column: author
+                  direction: asc
+                search:
+                  for: author
+                  value: ''
+                status: false
+      security:
+          - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/posts:
+    post:
+      tags:
+        - posts
+      summary: create post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: prova api title
+                body: prova api body
+                status: false
+                hashtagIds:
+                  - 61ffbdc2ca4817cfff7464dd
+      security:
+          - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/posts/{postId}:
+    put:
+      tags:
+        - posts
+      summary: update post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: prova api update
+                body: prova api update
+                status: false
+                hashtagIds:
+                  - _id: 61ffbdc2ca4817cfff7464dd
+                    name: spring
+      security:
+          - bearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the post to update
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - posts
+      summary: delete post
+      security:
+          - bearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the post to delete
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - posts
+      summary: get by id
+      security:
+          - bearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: string
+          required: true
+          description: Numeric ID of the post to get
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/posts/filter/{hashtagName}:
+    get:
+      tags:
+        - posts
+      summary: get by hashtags
+      security:
+          - bearerAuth: []
+      parameters:
+        - in: path
+          name: hashtagName
+          schema:
+            type: string
+          required: true
+          description: The name of the hashtag to filter
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
